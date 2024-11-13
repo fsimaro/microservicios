@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - logicalFilePath: baseline
+
+  - changeSet:
+      id: createTable-estudiante
+      comment: Create table estudiante
+      author: fsimaro
+      changes:
+        - createTable:
+            tableName: estudiante
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_estudiante
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: nombre
+                  type: varchar(50)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: apellido
+                  type: varchar(50)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: fecha_nacimiento
+                  type: date
+              - column:
+                  constraints:
+                    nullable: false
+                  name: genero
+                  type: varchar(10)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: libreta_universitaria
+                  type: varchar(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: numero_documento
+                  type: varchar(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: ciudad_origen
+                  type: varchar(50)

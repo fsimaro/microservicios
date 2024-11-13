@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - logicalFilePath: baseline
+
+  - changeSet:
+      id: createTable-carrera
+      comment: Create table carrera
+      author: fsimaro
+      changes:
+        - createTable:
+            tableName: carrera
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_carrera
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: nombre
+                  type: varchar(50)
+
+  - changeSet:
+      id: createTable-inscripcion
+      comment: Create table inscripcion
+      author: fsimaro
+      changes:
+        changes:
+          - createTable:
+              tableName: inscripcion
+              columns:
+                - column:
+                    constraints:
+                      nullable: false
+                    name: id_estudiante
+                    type: int
+                - column:
+                    constraints:
+                      nullable: false
+                    name: id_carrera
+                    type: int
+                - column:
+                    constraints:
+                      nullable: false
+                    name: anio_inscripcion
+                    type: int
+                - column:
+                  constraints:
+                    nullable: false
+                  name: graduado
+                  type: boolean
+          - addPrimaryKey:
+              clustered: true
+              columnNames: id_carrera, id_estudiante
+              constraintName: PK_inscripcion
+              tableName: inscripcion
+              validate: true
+          - addForeignKeyConstraint:
+              baseColumnNames: id_carrera
+              baseTableName: inscripcion
+              constraintName: FK_inscripcion_id_carrera
+              referencedColumnNames: id
+              referencedTableName: carrera
+              validate: true
